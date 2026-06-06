@@ -27,6 +27,8 @@ func New(store *store.Store) *http.ServeMux {
 
 	h.Mux.Handle("/auth/", goauth.Routes())
 	h.Mux.HandleFunc("GET /test", h.SaySomething)
+	h.Mux.HandleFunc("POST /users", h.CreateUser)
+	h.Mux.HandleFunc("POST /tasks", h.CreateTask)
 
 	return h.Mux
 }

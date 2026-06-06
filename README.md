@@ -7,8 +7,8 @@ Learning Go interfaces by building a small HTTP server backed by PostgreSQL.
 ### Done
 - **Implementing a package interface** — `store.Store` satisfies the `goauth.UserStore` interface from my own [`go-auth`](https://github.com/larrypalm/go-auth) package by implementing methods like `CreateUser`. Learned the difference between pointer receivers (`*Store`) and value receivers (`Store`) and why only `*Store` satisfies the interface when methods use pointer receivers.
 
-### In progress
-- **HTTP request interfaces** — using Go's `http.Handler` and `http.ResponseWriter` / `*http.Request` to handle incoming requests through a standard interface.
+### Done
+- **HTTP request interfaces + generics** — defined a `Validator` interface that all request types must satisfy, and a generic `Validate[T Validator]` function that decodes JSON and validates in one call. Learned why value receivers are idiomatic for validation methods, and how type constraints work in Go generics.
 
 ## Stack
 

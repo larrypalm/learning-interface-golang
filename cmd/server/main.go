@@ -4,12 +4,19 @@ import (
 	"context"
 	"fmt"
 	"learn-interfaces-go/internal/handler"
+	"learn-interfaces-go/internal/math"
 	"learn-interfaces-go/internal/store"
 	"log"
 	"net/http"
 )
 
 func main() {
+	rect := math.NewRectangle(1.123, 2)
+	fmt.Println(math.TotalArea[math.Rectangle](rect))
+
+	circle := math.NewCircle(1.123)
+	fmt.Println(math.TotalArea[math.Circle](circle))
+
 	ctx := context.Background()
 	store, err := store.New(ctx)
 	if err != nil {

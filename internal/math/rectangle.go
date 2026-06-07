@@ -15,3 +15,7 @@ func NewRectangle(width, height float64) Rectangle {
 func (r Rectangle) Area() float64 {
 	return r.Width * r.Height
 }
+
+func (r Rectangle) Perimeter() float64 {
+	return (r.Width * 2) + (r.Height * 2)
+}

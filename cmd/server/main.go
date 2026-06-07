@@ -14,8 +14,14 @@ func main() {
 	rect := math.NewRectangle(1.123, 2)
 	fmt.Println(math.TotalArea[math.Rectangle](rect))
 
-	circle := math.NewCircle(1.123)
+	circle := math.NewCircle(1123.123)
 	fmt.Println(math.TotalArea[math.Circle](circle))
+
+	circleSizeCategory := math.SizeCategory(circle)
+	fmt.Println(circleSizeCategory)
+
+	rectPerimeter := math.TotalPerimeter(rect)
+	fmt.Println(rectPerimeter)
 
 	ctx := context.Background()
 	store, err := store.New(ctx)

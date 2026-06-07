@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"learn-interfaces-go/internal/handler"
 	"learn-interfaces-go/internal/math"
+	"learn-interfaces-go/internal/notify"
 	"learn-interfaces-go/internal/store"
 	"log"
 	"net/http"
@@ -22,6 +23,15 @@ func main() {
 
 	rectPerimeter := math.TotalPerimeter(rect)
 	fmt.Println(rectPerimeter)
+
+	emailer := notify.NewEmailNotifier("hejsan")
+	test := []notify.EmailNotifier{emailer}
+	notify.Broadcast[notify.EmailNotifier](test, "test me")
+
+	smser := notify.NewSmsNotifier(0707112233)
+	smser2 := notify.NewSmsNotifier(0707223344)
+	smsNotifiers := []notify.SmsNotifier{smser, smser2}
+	notify.Broadcast[notify.SmsNotifier](smsNotifiers, "Hello")
 
 	ctx := context.Background()
 	store, err := store.New(ctx)

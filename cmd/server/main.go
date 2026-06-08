@@ -7,6 +7,7 @@ import (
 	"learn-interfaces-go/internal/math"
 	"learn-interfaces-go/internal/notify"
 	"learn-interfaces-go/internal/store"
+	"learn-interfaces-go/internal/validate"
 	"log"
 	"net/http"
 )
@@ -32,6 +33,18 @@ func main() {
 	smser2 := notify.NewSmsNotifier(0707223344)
 	smsNotifiers := []notify.SmsNotifier{smser, smser2}
 	notify.Broadcast[notify.SmsNotifier](smsNotifiers, "Hello")
+
+	validators := []validate.EmailValidator{{}}
+	errors := validate.ValidateAll[validate.EmailValidator](validators, "notanemail")
+	for _, error := range errors {
+		fmt.Println(error)
+	}
+
+	lengthValidators := []validate.LengthValidator{{Min: 5}}
+	lengthErrors := validate.ValidateAll[validate.LengthValidator](lengthValidators, "test")
+	for _, err := range lengthErrors {
+		fmt.Println(err)
+	}
 
 	ctx := context.Background()
 	store, err := store.New(ctx)
